@@ -1,38 +1,309 @@
-.App {
-  text-align: center;
+body,
+html,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  transition: background-color 0.1s, color 0.1s;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* ::-webkit-scrollbar-track {
+  background-color: #3a3a3a;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+* ::-webkit-scrollbar {
+  width: 6px;
+  background-color: #2d2d2d;
 }
-
-.App-link {
-  color: #61dafb;
+* ::-webkit-scrollbar-thumb {
+  background-color: #4a4a4a;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+[data-flume-component="node"] [data-flume-component="checkbox"] {
+  accent-color: #118ab2;
+  opacity: 0.1;
+}
+[data-flume-component="node"] [data-flume-component="checkbox"]:checked {
+  opacity: 1;
+}
+[data-flume-component="node"],
+[data-flume-component="comment"] {
+  background: #1d1d1d !important;
+  border: 1px solid;
+  color: #e1e1e1;
+  padding: 3px;
+  border-radius: 8px;
+}
+[data-flume-component="node-header"] {
+  background: unset;
+}
+[data-flume-component="comment"] {
+  padding: 5px 10px;
+}
+[data-flume-component="comment-textarea"],
+[data-flume-component="comment-input"],
+[data-flume-component="checkbox"],
+[data-flume-component="text-input-number"],
+[data-flume-component="text-input-textarea"] {
+  background: #242424 !important;
+  background-color: #242424 !important;
+  border: 1px solid #5a5a5a !important;
+  font-size: 12px;
+  color: #aaaaaa;
+  outline: none;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+[data-flume-node-type="string"],
+[data-flume-node-type="joinStrings"],
+[data-flume-node-type="splitString"],
+[data-flume-node-type="replaceString"],
+[data-flume-node-type="replaceStringRegex"] {
+  border-color: #ef476f;
+}
+[data-flume-node-type="string"] [data-flume-component="ports"],
+[data-flume-node-type="joinStrings"] [data-flume-component="ports"],
+[data-flume-node-type="splitString"] [data-flume-component="ports"],
+[data-flume-node-type="replaceString"] [data-flume-component="ports"],
+[data-flume-node-type="replaceStringRegex"] [data-flume-component="ports"] {
+  color: #ef476f;
+  background-color: #242424;
+  border-radius: 5px;
+}
+[data-flume-node-type="string"] [data-flume-component="node-header"],
+[data-flume-node-type="joinStrings"] [data-flume-component="node-header"],
+[data-flume-node-type="splitString"] [data-flume-component="node-header"],
+[data-flume-node-type="replaceString"] [data-flume-component="node-header"],
+[data-flume-node-type="replaceStringRegex"] [data-flume-component="node-header"] {
+  background-image: linear-gradient(90deg, #00000000 0%, rgba(239, 71, 111, 0.2) 30%, rgba(239, 71, 111, 0.5) 100%);
+}
+[data-flume-node-type="boolean"],
+[data-flume-node-type="and"],
+[data-flume-node-type="or"],
+[data-flume-node-type="reverseBoolean"] {
+  border-color: #118ab2;
+}
+[data-flume-node-type="boolean"] [data-flume-component="ports"],
+[data-flume-node-type="and"] [data-flume-component="ports"],
+[data-flume-node-type="or"] [data-flume-component="ports"],
+[data-flume-node-type="reverseBoolean"] [data-flume-component="ports"] {
+  color: #118ab2;
+  background-color: #242424;
+  border-radius: 5px;
+}
+[data-flume-node-type="boolean"] [data-flume-component="node-header"],
+[data-flume-node-type="and"] [data-flume-component="node-header"],
+[data-flume-node-type="or"] [data-flume-component="node-header"],
+[data-flume-node-type="reverseBoolean"] [data-flume-component="node-header"] {
+  background-image: linear-gradient(90deg, #00000000 0%, rgba(17, 138, 178, 0.2) 30%, rgba(17, 138, 178, 0.5) 100%);
+}
+[data-flume-node-type="enum"] {
+  border-color: #06d6a0;
+}
+[data-flume-node-type="enum"] [data-flume-component="ports"] {
+  color: #06d6a0;
+  background-color: #242424;
+  border-radius: 5px;
+}
+[data-flume-node-type="enum"] [data-flume-component="node-header"] {
+  background-image: linear-gradient(90deg, #00000000 0%, rgba(6, 214, 160, 0.2) 30%, rgba(6, 214, 160, 0.5) 100%);
+}
+[data-flume-node-type="number"],
+[data-flume-node-type="addNumbers"],
+[data-flume-node-type="subtractNumbers"],
+[data-flume-node-type="multiplyNumbers"],
+[data-flume-node-type="divideNumbers"],
+[data-flume-node-type="moduloNumbers"] {
+  border-color: #ffd166;
+}
+[data-flume-node-type="number"] [data-flume-component="ports"],
+[data-flume-node-type="addNumbers"] [data-flume-component="ports"],
+[data-flume-node-type="subtractNumbers"] [data-flume-component="ports"],
+[data-flume-node-type="multiplyNumbers"] [data-flume-component="ports"],
+[data-flume-node-type="divideNumbers"] [data-flume-component="ports"],
+[data-flume-node-type="moduloNumbers"] [data-flume-component="ports"] {
+  color: #ffd166;
+  background-color: #242424;
+  border-radius: 5px;
+}
+[data-flume-node-type="number"] [data-flume-component="node-header"],
+[data-flume-node-type="addNumbers"] [data-flume-component="node-header"],
+[data-flume-node-type="subtractNumbers"] [data-flume-component="node-header"],
+[data-flume-node-type="multiplyNumbers"] [data-flume-component="node-header"],
+[data-flume-node-type="divideNumbers"] [data-flume-component="node-header"],
+[data-flume-node-type="moduloNumbers"] [data-flume-component="node-header"] {
+  background-image: linear-gradient(90deg, #00000000 0%, rgba(255, 209, 102, 0.2) 30%, rgba(255, 209, 102, 0.5) 100%);
+}
+[data-flume-node-type="comment"] {
+  border-color: #073b4c;
+}
+[data-flume-node-type="comment"] [data-flume-component="ports"] {
+  color: #073b4c;
+  background-color: #1d1d1d;
+}
+[data-flume-node-type="comment"] [data-flume-component="node-header"] {
+  background-image: linear-gradient(90deg, #00000000 0%, rgba(7, 59, 76, 0.2) 30%, rgba(7, 59, 76, 0.5) 100%);
+}
+/* Ports */
+[data-port-color="red"] {
+  background: unset !important;
+  border: 1px solid #ef476f !important;
+  background-color: rgba(239, 71, 111, 0.5) !important;
+}
+[data-port-color="red"]:hover {
+  background-color: #ef476f !important;
+}
+[data-port-color="green"] {
+  background: unset !important;
+  border: 1px solid #118ab2 !important;
+  background-color: rgba(17, 138, 178, 0.5) !important;
+}
+[data-port-color="green"]:hover {
+  background-color: #118ab2 !important;
+}
+[data-port-color="blue"] {
+  background: unset !important;
+  border: 1px solid #06d6a0 !important;
+  background-color: rgba(6, 214, 160, 0.5) !important;
+}
+[data-port-color="blue"]:hover {
+  background-color: #06d6a0 !important;
+}
+[data-port-color="yellow"] {
+  background: unset !important;
+  border: 1px solid #ffd166 !important;
+  background-color: rgba(255, 209, 102, 0.5) !important;
+}
+[data-port-color="yellow"]:hover {
+  background-color: #ffd166 !important;
+}
+/* Converters */
+[data-flume-node-type="numberToString"] {
+  box-sizing: border-box;
+  border-right-color: #ef476f;
+  border-left-color: #ffd166;
+}
+[data-flume-node-type="numberToString"] [data-flume-component="ports"] {
+  color: #ef476f;
+  background-color: #242424;
+  border-radius: 5px;
+}
+[data-flume-node-type="numberToString"] [data-flume-component="node-header"] {
+  background-image: linear-gradient(90deg, rgba(255, 209, 102, 0.2) 0%, rgba(239, 71, 111, 0.5) 100%);
+}
+[data-flume-node-type="numberToString"] [data-flume-component="control-label"] {
+  color: #ffd166;
+}
+[data-flume-node-type="boolToString"] {
+  box-sizing: border-box;
+  border-right-color: #ef476f;
+  border-left-color: #118ab2;
+}
+[data-flume-node-type="boolToString"] [data-flume-component="ports"] {
+  color: #ef476f;
+  background-color: #242424;
+  border-radius: 5px;
+}
+[data-flume-node-type="boolToString"] [data-flume-component="node-header"] {
+  background-image: linear-gradient(90deg, rgba(17, 138, 178, 0.2) 0%, rgba(239, 71, 111, 0.5) 100%);
+}
+[data-flume-node-type="boolToString"] [data-flume-component="checkbox-label"] {
+  color: #118ab2;
+}
+[data-flume-node-type="includes"],
+[data-flume-node-type="startsWith"],
+[data-flume-node-type="endsWith"],
+[data-flume-node-type="stringEqual"] {
+  box-sizing: border-box;
+  border-left-color: #ef476f;
+  border-right-color: #118ab2;
+}
+[data-flume-node-type="includes"] [data-flume-component="ports"],
+[data-flume-node-type="startsWith"] [data-flume-component="ports"],
+[data-flume-node-type="endsWith"] [data-flume-component="ports"],
+[data-flume-node-type="stringEqual"] [data-flume-component="ports"] {
+  color: #ef476f;
+  background-color: #242424;
+  border-radius: 5px;
+}
+[data-flume-node-type="includes"] [data-flume-component="node-header"],
+[data-flume-node-type="startsWith"] [data-flume-component="node-header"],
+[data-flume-node-type="endsWith"] [data-flume-component="node-header"],
+[data-flume-node-type="stringEqual"] [data-flume-component="node-header"] {
+  background-image: linear-gradient(90deg, rgba(239, 71, 111, 0.2) 0%, rgba(17, 138, 178, 0.5) 100%);
+}
+[data-flume-node-type="includes"] [data-flume-component="port-output"],
+[data-flume-node-type="startsWith"] [data-flume-component="port-output"],
+[data-flume-node-type="endsWith"] [data-flume-component="port-output"],
+[data-flume-node-type="stringEqual"] [data-flume-component="port-output"] {
+  color: #118ab2;
+}
+/* Comparers */
+[data-flume-node-type="greaterThan"],
+[data-flume-node-type="lessThan"],
+[data-flume-node-type="greaterThanOrEqual"],
+[data-flume-node-type="lessThanOrEqual"],
+[data-flume-node-type="numberEqual"],
+[data-flume-node-type="equalNumbers"] {
+  border-left-color: #ffd166;
+  border-right-color: #118ab2;
+}
+[data-flume-node-type="greaterThan"] [data-flume-component="ports"],
+[data-flume-node-type="lessThan"] [data-flume-component="ports"],
+[data-flume-node-type="greaterThanOrEqual"] [data-flume-component="ports"],
+[data-flume-node-type="lessThanOrEqual"] [data-flume-component="ports"],
+[data-flume-node-type="numberEqual"] [data-flume-component="ports"],
+[data-flume-node-type="equalNumbers"] [data-flume-component="ports"] {
+  color: #ffd166;
+  background-color: #242424;
+  border-radius: 5px;
+}
+[data-flume-node-type="greaterThan"] [data-flume-component="node-header"],
+[data-flume-node-type="lessThan"] [data-flume-component="node-header"],
+[data-flume-node-type="greaterThanOrEqual"] [data-flume-component="node-header"],
+[data-flume-node-type="lessThanOrEqual"] [data-flume-component="node-header"],
+[data-flume-node-type="numberEqual"] [data-flume-component="node-header"],
+[data-flume-node-type="equalNumbers"] [data-flume-component="node-header"] {
+  background-image: linear-gradient(90deg, rgba(255, 209, 102, 0.2) 0%, rgba(17, 138, 178, 0.5) 100%);
+}
+[data-flume-node-type="greaterThan"] [data-flume-component="port-output"],
+[data-flume-node-type="lessThan"] [data-flume-component="port-output"],
+[data-flume-node-type="greaterThanOrEqual"] [data-flume-component="port-output"],
+[data-flume-node-type="lessThanOrEqual"] [data-flume-component="port-output"],
+[data-flume-node-type="numberEqual"] [data-flume-component="port-output"],
+[data-flume-node-type="equalNumbers"] [data-flume-component="port-output"] {
+  color: #118ab2;
+}
+/* Context menu */
+[data-flume-component="ctx-menu"] {
+  border: 2px solid #5a5a5a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+[data-flume-component="ctx-menu-input"] {
+  background-image: linear-gradient(90deg, #2d2d2d 0%, #2d2d2d 50%, #2d2d2d 100%);
+  transition: 0.2s;
+  border: 1px solid #5a5a5a;
+  color: #9a9a9a;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+[data-flume-component="ctx-menu-input"]:focus {
+  background-image: linear-gradient(90deg, #2d2d2d 0%, #2d2d2d 50%, #4a4a4a 100%);
+}
+[data-flume-component="ctx-menu-list"] {
+  background-color: #242424;
+}
+/* Output */
+[data-flume-node-type="output"] {
+  box-sizing: border-box;
+  border-color: #8a8a8a;
+}
+[data-flume-node-type="output"] [data-flume-component="node-header"] {
+  background-image: linear-gradient(90deg, #00000000 0%, #8a8a8a 100%);
+}
+.float {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }

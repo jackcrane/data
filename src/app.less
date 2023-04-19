@@ -1,0 +1,360 @@
+body,
+html,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+@theme-text-primary: #ef476f;
+@theme-text-primary-opaque: rgba(239, 71, 111, 0.5);
+@theme-text-primary-super-opaque: rgba(239, 71, 111, 0.2);
+@theme-number-primary: #ffd166;
+@theme-number-primary-opaque: rgba(255, 209, 102, 0.5);
+@theme-number-primary-super-opaque: rgba(255, 209, 102, 0.2);
+@theme-enum-primary: #06d6a0;
+@theme-enum-primary-opaque: rgba(6, 214, 160, 0.5);
+@theme-enum-primary-super-opaque: rgba(6, 214, 160, 0.2);
+@theme-boolean-primary: #118ab2;
+@theme-boolean-primary-opaque: rgba(17, 138, 178, 0.5);
+@theme-boolean-primary-super-opaque: rgba(17, 138, 178, 0.2);
+@theme-comment-primary: #073b4c;
+@theme-comment-primary-opaque: rgba(7, 59, 76, 0.5);
+@theme-comment-primary-super-opaque: rgba(7, 59, 76, 0.2);
+@grey-0: #1d1d1d;
+@grey-1: #242424;
+@grey-2: #2d2d2d;
+@grey-3: #3a3a3a;
+@grey-4: #4a4a4a;
+@grey-5: #5a5a5a;
+@grey-6: #6a6a6a;
+@grey-7: #7a7a7a;
+@grey-8: #8a8a8a;
+@grey-9: #9a9a9a;
+@grey-10: #aaaaaa;
+@grey-11: #e1e1e1;
+
+* {
+  transition: background-color 0.1s, color 0.1s;
+  ::-webkit-scrollbar-track {
+    background-color: @grey-3;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    background-color: @grey-2;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: @grey-4;
+  }
+}
+
+[data-flume-component="node"] {
+  [data-flume-component="checkbox"] {
+    accent-color: @theme-boolean-primary;
+    opacity: 0.1;
+    &:checked {
+      opacity: 1;
+    }
+  }
+}
+
+[data-flume-component="node"],
+[data-flume-component="comment"] {
+  background: @grey-0 !important;
+  border: 1px solid;
+  color: @grey-11;
+  padding: 3px;
+  border-radius: 8px;
+}
+[data-flume-component="node-header"] {
+  background: unset;
+}
+
+[data-flume-component="comment"] {
+  padding: 5px 10px;
+}
+
+[data-flume-component="comment-textarea"],
+[data-flume-component="comment-input"],
+[data-flume-component="checkbox"],
+[data-flume-component="text-input-number"],
+[data-flume-component="text-input-textarea"] {
+  background: @grey-1 !important;
+  background-color: @grey-1 !important;
+  border: 1px solid @grey-5 !important;
+  font-size: 12px;
+  color: @grey-10;
+  outline: none;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+[data-flume-node-type="string"],
+[data-flume-node-type="joinStrings"],
+[data-flume-node-type="splitString"],
+[data-flume-node-type="replaceString"],
+[data-flume-node-type="replaceStringRegex"] {
+  border-color: @theme-text-primary;
+  [data-flume-component="ports"] {
+    color: @theme-text-primary;
+    background-color: @grey-1;
+    border-radius: 5px;
+  }
+  [data-flume-component="node-header"] {
+    background-image: linear-gradient(
+      90deg,
+      #00000000 0%,
+      @theme-text-primary-super-opaque 30%,
+      @theme-text-primary-opaque 100%
+    );
+  }
+}
+[data-flume-node-type="boolean"],
+[data-flume-node-type="and"],
+[data-flume-node-type="or"],
+[data-flume-node-type="reverseBoolean"] {
+  border-color: @theme-boolean-primary;
+
+  [data-flume-component="ports"] {
+    color: @theme-boolean-primary;
+    background-color: @grey-1;
+    border-radius: 5px;
+  }
+  [data-flume-component="node-header"] {
+    background-image: linear-gradient(
+      90deg,
+      #00000000 0%,
+      @theme-boolean-primary-super-opaque 30%,
+      @theme-boolean-primary-opaque 100%
+    );
+  }
+}
+[data-flume-node-type="enum"] {
+  border-color: @theme-enum-primary;
+  [data-flume-component="ports"] {
+    color: @theme-enum-primary;
+    background-color: @grey-1;
+    border-radius: 5px;
+  }
+  [data-flume-component="node-header"] {
+    background-image: linear-gradient(
+      90deg,
+      #00000000 0%,
+      @theme-enum-primary-super-opaque 30%,
+      @theme-enum-primary-opaque 100%
+    );
+  }
+}
+[data-flume-node-type="number"],
+[data-flume-node-type="addNumbers"],
+[data-flume-node-type="subtractNumbers"],
+[data-flume-node-type="multiplyNumbers"],
+[data-flume-node-type="divideNumbers"],
+[data-flume-node-type="moduloNumbers"] {
+  border-color: @theme-number-primary;
+  [data-flume-component="ports"] {
+    color: @theme-number-primary;
+    background-color: @grey-1;
+    border-radius: 5px;
+  }
+  [data-flume-component="node-header"] {
+    background-image: linear-gradient(
+      90deg,
+      #00000000 0%,
+      @theme-number-primary-super-opaque 30%,
+      @theme-number-primary-opaque 100%
+    );
+  }
+}
+[data-flume-node-type="comment"] {
+  border-color: @theme-comment-primary;
+  [data-flume-component="ports"] {
+    color: @theme-comment-primary;
+    background-color: @grey-0;
+  }
+  [data-flume-component="node-header"] {
+    background-image: linear-gradient(
+      90deg,
+      #00000000 0%,
+      @theme-comment-primary-super-opaque 30%,
+      @theme-comment-primary-opaque 100%
+    );
+  }
+}
+/* Ports */
+
+[data-port-color="red"] {
+  background: unset !important;
+  border: 1px solid @theme-text-primary !important;
+  background-color: @theme-text-primary-opaque !important;
+  &:hover {
+    background-color: @theme-text-primary !important;
+  }
+}
+[data-port-color="green"] {
+  background: unset !important;
+  border: 1px solid @theme-boolean-primary !important;
+  background-color: @theme-boolean-primary-opaque !important;
+  &:hover {
+    background-color: @theme-boolean-primary !important;
+  }
+}
+[data-port-color="blue"] {
+  background: unset !important;
+  border: 1px solid @theme-enum-primary !important;
+  background-color: @theme-enum-primary-opaque !important;
+  &:hover {
+    background-color: @theme-enum-primary !important;
+  }
+}
+[data-port-color="yellow"] {
+  background: unset !important;
+  border: 1px solid @theme-number-primary !important;
+  background-color: @theme-number-primary-opaque !important;
+  &:hover {
+    background-color: @theme-number-primary !important;
+  }
+}
+
+/* Converters */
+
+[data-flume-node-type="numberToString"] {
+  box-sizing: border-box;
+  border-right-color: @theme-text-primary;
+  border-left-color: @theme-number-primary;
+  [data-flume-component="ports"] {
+    color: @theme-text-primary;
+    background-color: @grey-1;
+    border-radius: 5px;
+  }
+  [data-flume-component="node-header"] {
+    background-image: linear-gradient(
+      90deg,
+      @theme-number-primary-super-opaque 0%,
+      @theme-text-primary-opaque 100%
+    );
+  }
+  [data-flume-component="control-label"] {
+    color: @theme-number-primary;
+  }
+}
+
+[data-flume-node-type="boolToString"] {
+  box-sizing: border-box;
+  border-right-color: @theme-text-primary;
+  border-left-color: @theme-boolean-primary;
+  [data-flume-component="ports"] {
+    color: @theme-text-primary;
+    background-color: @grey-1;
+    border-radius: 5px;
+  }
+  [data-flume-component="node-header"] {
+    background-image: linear-gradient(
+      90deg,
+      @theme-boolean-primary-super-opaque 0%,
+      @theme-text-primary-opaque 100%
+    );
+  }
+  [data-flume-component="checkbox-label"] {
+    color: @theme-boolean-primary;
+  }
+}
+
+[data-flume-node-type="includes"],
+[data-flume-node-type="startsWith"],
+[data-flume-node-type="endsWith"],
+[data-flume-node-type="stringEqual"] {
+  box-sizing: border-box;
+  border-left-color: @theme-text-primary;
+  border-right-color: @theme-boolean-primary;
+  [data-flume-component="ports"] {
+    color: @theme-text-primary;
+    background-color: @grey-1;
+    border-radius: 5px;
+  }
+  [data-flume-component="node-header"] {
+    background-image: linear-gradient(
+      90deg,
+      @theme-text-primary-super-opaque 0%,
+      @theme-boolean-primary-opaque 100%
+    );
+  }
+  [data-flume-component="port-output"] {
+    color: @theme-boolean-primary;
+  }
+}
+
+/* Comparers */
+
+[data-flume-node-type="greaterThan"],
+[data-flume-node-type="lessThan"],
+[data-flume-node-type="greaterThanOrEqual"],
+[data-flume-node-type="lessThanOrEqual"],
+[data-flume-node-type="numberEqual"],
+[data-flume-node-type="equalNumbers"] {
+  border-left-color: @theme-number-primary;
+  border-right-color: @theme-boolean-primary;
+  [data-flume-component="ports"] {
+    color: @theme-number-primary;
+    background-color: @grey-1;
+    border-radius: 5px;
+  }
+  [data-flume-component="node-header"] {
+    background-image: linear-gradient(
+      90deg,
+      @theme-number-primary-super-opaque 00%,
+      @theme-boolean-primary-opaque 100%
+    );
+  }
+  [data-flume-component="port-output"] {
+    color: @theme-boolean-primary;
+  }
+}
+
+/* Context menu */
+
+[data-flume-component="ctx-menu"] {
+  border: 2px solid @grey-5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+[data-flume-component="ctx-menu-input"] {
+  background-image: linear-gradient(
+    90deg,
+    @grey-2 0%,
+    @grey-2 50%,
+    @grey-2 100%
+  );
+  transition: 0.2s;
+  border: 1px solid @grey-5;
+  color: @grey-9;
+  border-radius: 5px;
+  box-sizing: border-box;
+  &:focus {
+    background-image: linear-gradient(
+      90deg,
+      @grey-2 0%,
+      @grey-2 50%,
+      @grey-4 100%
+    );
+  }
+}
+[data-flume-component="ctx-menu-list"] {
+  background-color: @grey-1;
+}
+
+/* Output */
+[data-flume-node-type="output"] {
+  box-sizing: border-box;
+  border-color: @grey-8;
+  [data-flume-component="node-header"] {
+    background-image: linear-gradient(90deg, #00000000 0%, @grey-8 100%);
+  }
+}
+
+.float {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
