@@ -29,10 +29,6 @@ const resolveNodes = (node, inputValues, nodeType, context) => {
       return { boolean: inputValues.boolean };
     case "number":
       return { number: inputValues.number };
-    case "user":
-      return context.user;
-    case "joinText":
-      return { joinedText: inputValues.string1 + inputValues.string2 };
     case "reverseBoolean":
       return { boolean: !inputValues.boolean };
     case "boolToString":
@@ -107,3 +103,4 @@ const resolveNodes = (node, inputValues, nodeType, context) => {
 const engine = new RootEngine(config, resolvePorts, resolveNodes);
 
 export default engine;
+export { resolveNodes };
