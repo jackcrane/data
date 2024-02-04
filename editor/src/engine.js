@@ -3,7 +3,7 @@ import config from "./config";
 import PeriodicTableDataSource from "./DataSources/PeriodicTable.js";
 
 const l = (data) => {
-  // console.log("l", data);
+  console.log("l", data);
   return data;
 };
 
@@ -49,25 +49,28 @@ const resolveNodes = (node, inputValues, nodeType, context) => {
     case "or":
       return { boolean: inputValues.boolean1 || inputValues.boolean2 };
     case "addNumbers":
-      return { number: inputValues.number1 + inputValues.number2 };
+      console.log("Adding numbers", inputValues);
+      return {
+        number: parseFloat(inputValues.num1.number + inputValues.num2.number),
+      };
     case "subtractNumbers":
-      return { number: inputValues.number1 - inputValues.number2 };
+      return { number: inputValues.num1.number - inputValues.num2.number };
     case "multiplyNumbers":
-      return { number: inputValues.number1 * inputValues.number2 };
+      return { number: inputValues.num1.number * inputValues.num2.number };
     case "divideNumbers":
-      return { number: inputValues.number1 / inputValues.number2 };
+      return { number: inputValues.num1.number / inputValues.num2.number };
     case "moduloNumbers":
-      return { number: inputValues.number1 % inputValues.number2 };
+      return { number: inputValues.num1.number % inputValues.num2.number };
     case "greaterThan":
-      return { boolean: inputValues.number1 > inputValues.number2 };
+      return { boolean: inputValues.num1.number > inputValues.num2.number };
     case "lessThan":
-      return { boolean: inputValues.number1 < inputValues.number2 };
+      return { boolean: inputValues.num1.number < inputValues.num2.number };
     case "greaterThanOrEqual":
-      return { boolean: inputValues.number1 >= inputValues.number2 };
+      return { boolean: inputValues.num1.number >= inputValues.num2.number };
     case "lessThanOrEqual":
-      return { boolean: inputValues.number1 <= inputValues.number2 };
+      return { boolean: inputValues.num1.number <= inputValues.num2.number };
     case "numberEqual":
-      return { boolean: inputValues.number1 === inputValues.number2 };
+      return { boolean: inputValues.num1.number === inputValues.num2.number };
     case "stringEqual":
       return { boolean: inputValues.string1 === inputValues.string2 };
     case "replaceString":
