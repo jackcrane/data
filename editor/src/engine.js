@@ -3,7 +3,7 @@ import config from "./config";
 import PeriodicTableDataSource from "./DataSources/PeriodicTable.js";
 
 const l = (data) => {
-  console.log("l", data);
+  // console.log("l", data);
   return data;
 };
 
@@ -96,8 +96,15 @@ const resolveNodes = (node, inputValues, nodeType, context) => {
       return { boolean: inputValues.string.startsWith(inputValues.startsWith) };
     case "endsWith":
       return { boolean: inputValues.string.endsWith(inputValues.endsWith) };
+    case "log":
+      console.log("Log", inputValues);
+      return inputValues;
     case "periodicTable":
       return l(PeriodicTableDataSource(inputValues));
+      return inputValues;
+    case "input":
+      console.log("Input_", inputValues, context);
+      return inputValues;
     default:
       return inputValues;
   }

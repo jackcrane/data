@@ -38,6 +38,18 @@ config
       }),
     ],
   })
+  .addPortType({
+    type: "object",
+    name: "object",
+    label: "Object",
+    color: Colors.blue,
+    controls: [
+      Controls.text({
+        name: "object",
+        label: "Object",
+      }),
+    ],
+  })
   .addRootNodeType({
     type: "output",
     label: "Output",
@@ -454,6 +466,37 @@ config
       }),
     ],
     outputs: (ports) => [ports.boolean()],
+  })
+  .addNodeType({
+    type: "input",
+    label: "Input",
+    description: "Input",
+    initialWidth: 140,
+    inputs: (ports) => (inputData, connections, context) => [],
+    outputs: (ports) => (inputData, connections, context) => {
+      console.log("Input", inputData, context);
+      return Object.keys(context).map((key) => {
+        console.log("Key", key, context[key]);
+        const value = context[key];
+        const type = typeof Object.values(value)[0];
+        if (type === "string") {
+          return ports.string({
+            name: key,
+            label: key,
+          });
+        } else if (type === "number") {
+          return ports.number({
+            name: key,
+            label: key,
+          });
+        } else if (type === "boolean") {
+          return ports.boolean({
+            name: key,
+            label: key,
+          });
+        }
+      });
+    },
   });
 // === END OF PRIMARY NODES ===
 config.addNodeType({

@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Row = styled.div`
   display: flex;
   flex: 1;
+  align-items: center;
+  height: 100%;
   gap: ${(props) => props.gap || 0}px;
 `;
 
