@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Topnav = styled.div`
   background-color: #1a1c1d;
-  overflow: hidden;
+  overflow: visible;
   padding: 10px;
 `;
 
@@ -22,7 +22,7 @@ export const Rightbar = styled.div`
 
 export const Section = styled.div`
   border-bottom: 2px solid #232526;
-  padding: 10px;
+  padding: ${(props) => props.padding || 10}px;
 `;
 
 export const Mono = styled.span`
@@ -37,6 +37,10 @@ export const Box = styled.div`
 
 export const Spacer = styled.div`
   height: ${(props) => props.units * 8 || 16}px;
+`;
+
+export const Hr = styled.hr`
+  border: 1px solid #232526;
 `;
 
 const _Tooltip = styled.div`

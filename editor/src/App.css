@@ -303,6 +303,13 @@ html,
 [data-flume-node-type="output"] [data-flume-component="node-header"] {
   background-image: linear-gradient(90deg, #00000000 0%, #8a8a8a 100%);
 }
+[data-flume-node-type="input"] {
+  box-sizing: border-box;
+  border-color: #8a8a8a;
+}
+[data-flume-node-type="input"] [data-flume-component="node-header"] {
+  background-image: linear-gradient(90deg, #00000000 0%, #8a8a8a 100%);
+}
 .float {
   position: absolute;
   bottom: 10px;

@@ -23,6 +23,7 @@ model Script {
   content   String    @db.Text
   user      User?     @relation(fields: [userId], references: [id])
   userId    String?
+  name      String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

@@ -32,47 +32,60 @@ const resolveNodes = (node, inputValues, nodeType, context) => {
     case "reverseBoolean":
       return { boolean: !inputValues.boolean };
     case "boolToString":
-      return { string: inputValues.boolean.boolean ? "true" : "false" };
+      return { string: tTRv(inputValues.boolean) ? "true" : "false" };
     case "numberToString":
-      return { string: inputValues.number.number.toString() };
+      return { string: tTRv(inputValues.number).toString() };
     case "joinStrings":
       return {
         string:
-          inputValues.string1.string +
-          inputValues.string2.string +
-          inputValues.string3.string,
+          tTRv(inputValues.string1) +
+          tTRv(inputValues.string2) +
+          tTRv(inputValues.string3),
       };
     case "includes":
       return { boolean: inputValues.string.includes(inputValues.includes) };
     case "and":
-      return { boolean: inputValues.boolean1 && inputValues.boolean2 };
-    case "or":
-      return { boolean: inputValues.boolean1 || inputValues.boolean2 };
-    case "addNumbers":
-      console.log("Adding numbers", inputValues);
       return {
-        number: parseFloat(inputValues.num1.number + inputValues.num2.number),
+        boolean: tTRv(inputValues.boolean1) && tTRv(inputValues.boolean2),
+      };
+    case "or":
+      return {
+        boolean: tTRv(inputValues.boolean1) || tTRv(inputValues.boolean2),
+      };
+    case "addNumbers":
+      return {
+        number: parseFloat(tTRv(inputValues.num1) + tTRv(inputValues.num2)),
       };
     case "subtractNumbers":
-      return { number: inputValues.num1.number - inputValues.num2.number };
+      return {
+        number: tTRv(inputValues.num1) - tTRv(inputValues.num2),
+      };
     case "multiplyNumbers":
-      return { number: inputValues.num1.number * inputValues.num2.number };
+      return { number: tTRv(inputValues.num1) * tTRv(inputValues.num2) };
     case "divideNumbers":
-      return { number: inputValues.num1.number / inputValues.num2.number };
+      return { number: tTRv(inputValues.num1) / tTRv(inputValues.num2) };
     case "moduloNumbers":
-      return { number: inputValues.num1.number % inputValues.num2.number };
+      return { number: tTRv(inputValues.num1) % tTRv(inputValues.num2) };
     case "greaterThan":
-      return { boolean: inputValues.num1.number > inputValues.num2.number };
+      console.log(
+        "greaterThan",
+        inputValues.num1,
+        inputValues.num2,
+        tTRv(inputValues.num1) > tTRv(inputValues.num2)
+      );
+      return { boolean: tTRv(inputValues.num1) > tTRv(inputValues.num2) };
     case "lessThan":
-      return { boolean: inputValues.num1.number < inputValues.num2.number };
+      return { boolean: tTRv(inputValues.num1) < tTRv(inputValues.num2) };
     case "greaterThanOrEqual":
-      return { boolean: inputValues.num1.number >= inputValues.num2.number };
+      return { boolean: tTRv(inputValues.num1) >= tTRv(inputValues.num2) };
     case "lessThanOrEqual":
-      return { boolean: inputValues.num1.number <= inputValues.num2.number };
+      return { boolean: tTRv(inputValues.num1) <= tTRv(inputValues.num2) };
     case "numberEqual":
-      return { boolean: inputValues.num1.number === inputValues.num2.number };
+      return { boolean: tTRv(inputValues.num1) === tTRv(inputValues.num2) };
     case "stringEqual":
-      return { boolean: inputValues.string1 === inputValues.string2 };
+      return {
+        boolean: tTRv(inputValues.string1) === tTRv(inputValues.string2),
+      };
     case "replaceString":
       return {
         string: inputValues.string.replace(
@@ -88,10 +101,13 @@ const resolveNodes = (node, inputValues, nodeType, context) => {
         ),
       };
     case "splitString":
-      return {
-        string1: inputValues.string.split(inputValues.split)[0],
-        string2: inputValues.string.split(inputValues.split)[1],
+      console.log(inputValues);
+      let r = {
+        string1: tTRv(inputValues.string).split(tTRv(inputValues.separator))[0],
+        string2: tTRv(inputValues.string).split(tTRv(inputValues.separator))[1],
       };
+      console.log("splitString", r);
+      return r;
     case "startsWith":
       return { boolean: inputValues.string.startsWith(inputValues.startsWith) };
     case "endsWith":
@@ -105,6 +121,18 @@ const resolveNodes = (node, inputValues, nodeType, context) => {
     case "input":
       console.log("Input_", inputValues, context);
       return inputValues;
+    case "if":
+      console.log(
+        "if",
+        inputValues.condition,
+        inputValues.true,
+        inputValues.false
+      );
+      return {
+        string: tTRv(inputValues.condition)
+          ? tTRv(inputValues.true)
+          : tTRv(inputValues.false),
+      };
     default:
       return inputValues;
   }
@@ -114,3 +142,10 @@ const engine = new RootEngine(config, resolvePorts, resolveNodes);
 
 export default engine;
 export { resolveNodes };
+
+// traverse to real value
+const tTRv = (data) => {
+  const valueToReturn =
+    typeof data === "object" ? Object.values(data)[0] : data;
+  return valueToReturn;
+};

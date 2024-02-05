@@ -11,3 +11,8 @@ export const post = async (req, res) => {
   console.log(script);
   res.json({ ...script });
 };
+
+export const get = async (req, res) => {
+  const scripts = await prisma.script.findMany();
+  res.json(scripts);
+};

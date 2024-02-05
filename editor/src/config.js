@@ -50,6 +50,32 @@ config
       }),
     ],
   })
+  .addPortType({
+    type: "debug",
+    name: "debug",
+    label: "Debug",
+    acceptTypes: ["number", "string", "boolean"],
+    color: Colors.pink,
+    controls: [
+      Controls.text({
+        name: "debug",
+        label: "Debug",
+      }),
+    ],
+  })
+  .addPortType({
+    type: "numberOrString",
+    name: "numberOrString",
+    label: "Number or String",
+    color: Colors.purple,
+    acceptTypes: ["number", "string"],
+    controls: [
+      Controls.text({
+        name: "numberOrString",
+        label: "Number or String",
+      }),
+    ],
+  })
   .addRootNodeType({
     type: "output",
     label: "Output",
@@ -68,6 +94,43 @@ config
         label: "Number Output",
       }),
     ],
+  })
+  .addNodeType({
+    type: "debug",
+    label: "Debug",
+    description: "Debug",
+    initialWidth: 140,
+    inputs: (ports) => [
+      ports.debug({
+        name: "input",
+        label: "Input",
+      }),
+    ],
+    outputs: () => [],
+    component: (props) => {
+      return <div>{JSON.stringify(props)}</div>;
+    },
+  })
+  .addNodeType({
+    type: "if",
+    label: "If Switch (String)",
+    description: "Changes output based on a condition",
+    initialWidth: 140,
+    inputs: (ports) => [
+      ports.boolean({
+        name: "condition",
+        label: "Condition",
+      }),
+      ports.string({
+        name: "true",
+        label: "True",
+      }),
+      ports.string({
+        name: "false",
+        label: "False",
+      }),
+    ],
+    outputs: (ports) => [ports.string()],
   })
   .addNodeType({
     type: "string",

@@ -1,3 +1,7 @@
+import { PrismaClient } from "@prisma/client";
+export const prisma = new PrismaClient();
+
 export const get = async (req, res) => {
-  res.json({ message: "Hello World" });
+  const scripts = await prisma.script.findMany();
+  res.json(scripts);
 };
